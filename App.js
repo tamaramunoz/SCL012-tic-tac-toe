@@ -24,6 +24,10 @@ export default function App() {
     setWinner(null)
   }
 
+  const onTilePress = (row, col) => {
+
+  }
+
   const touchIcon = (row, col) => {
     let value = game[row][col]
 
@@ -32,52 +36,71 @@ export default function App() {
       case -1: return <Icon name="circle-outline" style={styles.tileO} />
       default: return <View />
     }
+  }
 
 
 
-  };
 
   return (
     <View style={styles.container}>
 
       <View style={ {flexDirection: "row", alignItems: "center", justifyContent: "center"} }>
-        <TouchableOpacity style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} > 
+        <TouchableOpacity 
+          style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} 
+          onPress={() => onTilePress(0, 0)}
+        > 
           {touchIcon(0, 0)}
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.tile, { borderTopWidth: 0 }]} > 
+        <TouchableOpacity style={[styles.tile, { borderTopWidth: 0 }]} 
+          onPress={() => onTilePress(0, 1)}
+        > 
           {touchIcon(0, 1)}
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.tile, { borderTopWidth: 0, borderRightWidth: 0 }]} >
+        <TouchableOpacity style={[styles.tile, { borderTopWidth: 0, borderRightWidth: 0 }]} 
+          onPress={() => onTilePress(0, 2)}
+        >
           {touchIcon(0, 2)}
         </TouchableOpacity>
       </View>
 
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity style={[styles.tile, { borderLeftWidth: 0 }]} >
+        <TouchableOpacity style={[styles.tile, { borderLeftWidth: 0 }]} 
+          onPress={() => onTilePress(1, 0)}
+        >
           {touchIcon(1, 0)}
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.tile, {  }]} >
+        <TouchableOpacity style={[styles.tile, {  }]} 
+          onPress={() => onTilePress(1, 1)}
+        >
           {touchIcon(1, 1)}
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.tile, { borderRightWidth: 0 }]} >
+        <TouchableOpacity style={[styles.tile, { borderRightWidth: 0 }]} 
+          onPress={() => onTilePress(1, 2)}
+        >
           {touchIcon(1, 2)}
         </TouchableOpacity>
       </View>
 
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity style={[styles.tile, { borderBottomWidth: 0, borderLeftWidth: 0 }]} >
+        <TouchableOpacity style={[styles.tile, { borderBottomWidth: 0, borderLeftWidth: 0 }]} 
+          onPress={() => onTilePress(2, 0)}
+        >
           {touchIcon(2, 0)}
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.tile, { borderBottomWidth: 0 }]} >
+        <TouchableOpacity style={[styles.tile, { borderBottomWidth: 0 }]} 
+          onPress={() => onTilePress(2, 1)}
+        >
           {touchIcon(2, 1)}
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.tile, { borderBottomWidth: 0, borderRightWidth: 0 }]} >
+        <TouchableOpacity style={[styles.tile, { borderBottomWidth: 0, borderRightWidth: 0 }]} 
+          onPress={() => onTilePress(2, 2)}
+        >
           {touchIcon(2, 2)}
         </TouchableOpacity>
       </View>
