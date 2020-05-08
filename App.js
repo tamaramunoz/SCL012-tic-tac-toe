@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons'
 
 export default function App() {
@@ -40,42 +40,46 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      <View style={ {flexDirection: "row"} }>
-        <View style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} > 
+      <View style={ {flexDirection: "row", alignItems: "center", justifyContent: "center"} }>
+        <TouchableOpacity style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} > 
           {touchIcon(0, 0)}
-        </View>
+        </TouchableOpacity>
 
-        <View style={[styles.tile, { borderTopWidth: 0 }]} > 
+        <TouchableOpacity style={[styles.tile, { borderTopWidth: 0 }]} > 
           {touchIcon(0, 1)}
-        </View>
+        </TouchableOpacity>
 
-        <View style={[styles.tile, { borderTopWidth: 0, borderRightWidth: 0 }]} >
+        <TouchableOpacity style={[styles.tile, { borderTopWidth: 0, borderRightWidth: 0 }]} >
           {touchIcon(0, 2)}
-        </View>
+        </TouchableOpacity>
       </View>
 
       <View style={{flexDirection: 'row'}}>
-        <View style={[styles.tile, { borderLeftWidth: 0 }]} >
+        <TouchableOpacity style={[styles.tile, { borderLeftWidth: 0 }]} >
           {touchIcon(1, 0)}
-        </View>
-        <View style={[styles.tile, {  }]} >
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.tile, {  }]} >
           {touchIcon(1, 1)}
-        </View>
-        <View style={[styles.tile, { borderRightWidth: 0 }]} >
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.tile, { borderRightWidth: 0 }]} >
           {touchIcon(1, 2)}
-        </View>
+        </TouchableOpacity>
       </View>
 
       <View style={{flexDirection: 'row'}}>
-        <View style={[styles.tile, { borderBottomWidth: 0, borderLeftWidth: 0 }]} >
+        <TouchableOpacity style={[styles.tile, { borderBottomWidth: 0, borderLeftWidth: 0 }]} >
           {touchIcon(2, 0)}
-        </View>
-        <View style={[styles.tile, { borderBottomWidth: 0 }]} >
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.tile, { borderBottomWidth: 0 }]} >
           {touchIcon(2, 1)}
-        </View>
-        <View style={[styles.tile, { borderBottomWidth: 0, borderRightWidth: 0 }]} >
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.tile, { borderBottomWidth: 0, borderRightWidth: 0 }]} >
           {touchIcon(2, 2)}
-        </View>
+        </TouchableOpacity>
       </View>
 
     </View>
