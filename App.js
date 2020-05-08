@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
 
 export default function App() {
@@ -19,10 +19,51 @@ export default function App() {
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0],
-    ]);
-
+    ])
     setWinner(null)
   };
+
+  const tieGame = () => {
+    let arr = game;
+
+    for (let i = 0; i < 3; i++) {
+      if (arr[0][i] === 0) { return 0; } 
+      else if (arr[1][i] === 0) { return 0; } 
+      else if (arr[2][i] === 0) { return 0; }
+    }
+    return 1;
+  }
+
+  const getWinner = () => {
+    let sum;
+    let arr = game;
+
+    // chequeando columnas
+    for (let i = 0; i < 3; i++) {
+      sum = arr[0][i] + arr[1][i] + arr[2][i];
+      if (sum === 3) { return 1; } 
+      else if (sum === -3) { return -1; }
+    }
+
+    // chequeando filas
+    for (let i = 0; i < 3; i++) {
+      sum = arr[i][0] + arr[i][1] + arr[i][2];
+      if (sum === 3) { return 1; } 
+      else if (sum === -3) { return -1; }
+    }
+
+    // chequeando diagonales
+    sum = arr[0][0] + arr[1][1] + arr[2][2];
+    if (sum === 3) { return 1; } 
+    else if (sum === -3) { return -1; }
+
+    sum = arr[2][0] + arr[1][1] + arr[0][2];
+    if (sum === 3) { return 1; } 
+    else if (sum === -3) { return -1; }
+
+    // empate
+    return null;
+  }
 
   const onTilePress = (row, col) => {
     // no permite que los cuadros cambien
@@ -34,11 +75,29 @@ export default function App() {
     square[row][col] = player;
     setGame(square);
     
-    
     // cambiando el jugador
     let nextPlayer = (player == 1) ? -1 : 1;
     setPlayer(nextPlayer);
 
+    // chequeando el ganador
+    let winner = getWinner();
+    let tie = tieGame();
+
+    // definiendo al ganador
+    if (winner === 1) {
+      Alert.alert("Player One Ganó!");
+      initializeGame();
+    } else if (winner === -1) {
+      Alert.alert("Player Two Ganó!");
+      initializeGame();
+    } else if (tie === 1) {
+      Alert.alert("Es un empate!");
+      initializeGame();
+    }
+  };
+
+  const onNewGamePress = () => {
+    initializeGame();
   };
 
   const touchIcon = (row, col) => {
@@ -50,8 +109,6 @@ export default function App() {
       default: return <View />
     }
   };
-
-
 
 
   return (
@@ -116,6 +173,10 @@ export default function App() {
         >
           {touchIcon(2, 2)}
         </TouchableOpacity>
+      </View>
+
+      <View style={ {paddingTop:50} } >
+        <Button title="New Game" onPress={ onNewGamePress } > </Button>
       </View>
 
     </View>
