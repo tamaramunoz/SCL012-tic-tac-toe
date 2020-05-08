@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons'
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
 
 export default function App() {
 
@@ -8,10 +8,10 @@ export default function App() {
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0]
-  ])
+  ]);
 
-  const [playerOne, setPlayerOne] = useState(1)
-  const [winner, setWinner] = useState("")
+  const [player, setPlayer] = useState(1);
+  const [winner, setWinner] = useState("");
 
 
   const initializeGame = () => {
@@ -22,11 +22,24 @@ export default function App() {
     ]);
 
     setWinner(null)
-  }
+  };
 
   const onTilePress = (row, col) => {
+    // no permite que los cuadros cambien
+    let value = game[row][col];
+    if (value !== 0){ return; }
 
-  }
+    // elige el cuadro presionado
+    let square = [...game];
+    square[row][col] = player;
+    setGame(square);
+    
+    
+    // cambiando el jugador
+    let nextPlayer = (player == 1) ? -1 : 1;
+    setPlayer(nextPlayer);
+
+  };
 
   const touchIcon = (row, col) => {
     let value = game[row][col]
@@ -36,7 +49,7 @@ export default function App() {
       case -1: return <Icon name="circle-outline" style={styles.tileO} />
       default: return <View />
     }
-  }
+  };
 
 
 
