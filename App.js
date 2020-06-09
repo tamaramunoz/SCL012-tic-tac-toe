@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, Button, Image, TouchableHighlight } from 'react-native';
 import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
+import style from './style.js';
 
 export default function App() {
 
@@ -85,10 +86,10 @@ export default function App() {
 
     // definiendo al ganador
     if (winner === 1) {
-      Alert.alert("Player One Ganó!");
+      Alert.alert("Holly Ganó!");
       initializeGame();
     } else if (winner === -1) {
-      Alert.alert("Player Two Ganó!");
+      Alert.alert("Ben Ganó!");
       initializeGame();
     } else if (tie === 1) {
       Alert.alert("Es un empate!");
@@ -101,11 +102,11 @@ export default function App() {
   };
 
   const touchIcon = (row, col) => {
-    let value = game[row][col]
+    let character = game[row][col]
 
-    switch(value){
-      case 1: return <Icon name="close" style={styles.tileX} />
-      case -1: return <Icon name="circle-outline" style={styles.tileO} />
+    switch(character){
+      case 1: return <Image source={require('./assets/holly.png')} style={styles.tileX} />
+      case -1: return <Image source={require('./assets/ben.png')} style={styles.tileO} />
       default: return <View />
     }
   };
@@ -175,9 +176,9 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      <View style={ {paddingTop:50} } >
-        <Button title="New Game" onPress={ onNewGamePress } > </Button>
-      </View>
+      <TouchableHighlight  style={style.newGameBtn} >
+        <Text style={style.textBtn}  onPress={ onNewGamePress } >New Game</Text>
+      </TouchableHighlight>
 
     </View>
   );
@@ -186,25 +187,26 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#3B3B98',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   tile: {
     borderWidth: 5,
+    borderColor: '#fffa65',
     width: 100,
     height: 100,
   },
 
   tileX: {
-    color: "red",
-    fontSize: 60,
+    width: 80,
+    height: 80,
   },
 
   tileO: {
-    color: "green",
-    fontSize: 60,
+    width: 80,
+    height: 80,
   },
 
 
