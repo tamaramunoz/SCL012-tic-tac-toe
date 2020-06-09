@@ -111,9 +111,27 @@ export default function App() {
     }
   };
 
+  const nextPlayer = () => {
+    switch (player) {
+      case 1: return ( <Image style={styles.tileX} source={require("./assets/holly.png")}/>);
+      case -1: return ( <Image style={styles.tileO} source={require("./assets/ben.png")}/>);
+      default: <Text />;
+    }
+  };
+
 
   return (
     <View style={styles.container}>
+
+      <View style={style.logo}>
+        <Image source={require('./assets/1.png')} style={style.imageLogo} />
+      </View>
+
+      <View style={style.gamerContainer}>
+        <View style={style.gamer}>
+          <Text style={style.textPlayer}>Siguiente turno: {nextPlayer()} </Text>
+        </View>
+      </View>
 
       <View style={ {flexDirection: "row", alignItems: "center", justifyContent: "center"} }>
         <TouchableOpacity 
